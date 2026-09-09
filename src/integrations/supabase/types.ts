@@ -14,7 +14,178 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ciclos: {
+        Row: {
+          camion: string
+          capacidad: number | null
+          created_at: string
+          distancia: number | null
+          es_mineral: boolean | null
+          espera_cola: number | null
+          grupo_material: string | null
+          id: string
+          lugar_carga: string | null
+          material: string | null
+          ociosidad_camion: number | null
+          ociosidad_pala: number | null
+          operador_camion: string | null
+          operador_pala: string | null
+          pala: string | null
+          tiempo_aculatamiento: number | null
+          tiempo_carguio: number | null
+          toneladas: number | null
+          ts_asignacion: string | null
+          ts_carguio: string | null
+          ts_llegada: string | null
+          ts_lleno: string | null
+          turno_id: string
+          unidad_carga: string | null
+          viaje_vacio: number | null
+          viaje_vacio_esperado: number | null
+        }
+        Insert: {
+          camion: string
+          capacidad?: number | null
+          created_at?: string
+          distancia?: number | null
+          es_mineral?: boolean | null
+          espera_cola?: number | null
+          grupo_material?: string | null
+          id?: string
+          lugar_carga?: string | null
+          material?: string | null
+          ociosidad_camion?: number | null
+          ociosidad_pala?: number | null
+          operador_camion?: string | null
+          operador_pala?: string | null
+          pala?: string | null
+          tiempo_aculatamiento?: number | null
+          tiempo_carguio?: number | null
+          toneladas?: number | null
+          ts_asignacion?: string | null
+          ts_carguio?: string | null
+          ts_llegada?: string | null
+          ts_lleno?: string | null
+          turno_id: string
+          unidad_carga?: string | null
+          viaje_vacio?: number | null
+          viaje_vacio_esperado?: number | null
+        }
+        Update: {
+          camion?: string
+          capacidad?: number | null
+          created_at?: string
+          distancia?: number | null
+          es_mineral?: boolean | null
+          espera_cola?: number | null
+          grupo_material?: string | null
+          id?: string
+          lugar_carga?: string | null
+          material?: string | null
+          ociosidad_camion?: number | null
+          ociosidad_pala?: number | null
+          operador_camion?: string | null
+          operador_pala?: string | null
+          pala?: string | null
+          tiempo_aculatamiento?: number | null
+          tiempo_carguio?: number | null
+          toneladas?: number | null
+          ts_asignacion?: string | null
+          ts_carguio?: string | null
+          ts_llegada?: string | null
+          ts_lleno?: string | null
+          turno_id?: string
+          unidad_carga?: string | null
+          viaje_vacio?: number | null
+          viaje_vacio_esperado?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ciclos_turno_id_fkey"
+            columns: ["turno_id"]
+            isOneToOne: false
+            referencedRelation: "turnos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      eventos_alerta: {
+        Row: {
+          alerta_clave: string
+          autor: string | null
+          created_at: string
+          detalle: string | null
+          estado: string
+          id: string
+          turno_id: string | null
+        }
+        Insert: {
+          alerta_clave: string
+          autor?: string | null
+          created_at?: string
+          detalle?: string | null
+          estado: string
+          id?: string
+          turno_id?: string | null
+        }
+        Update: {
+          alerta_clave?: string
+          autor?: string | null
+          created_at?: string
+          detalle?: string | null
+          estado?: string
+          id?: string
+          turno_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "eventos_alerta_turno_id_fkey"
+            columns: ["turno_id"]
+            isOneToOne: false
+            referencedRelation: "turnos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      turnos: {
+        Row: {
+          activo: boolean
+          archivo: string
+          created_at: string
+          filas: number
+          fin: string | null
+          grupo: string | null
+          id: string
+          inicio: string | null
+          nombre_turno: string
+          shift_id: string | null
+        }
+        Insert: {
+          activo?: boolean
+          archivo: string
+          created_at?: string
+          filas?: number
+          fin?: string | null
+          grupo?: string | null
+          id?: string
+          inicio?: string | null
+          nombre_turno: string
+          shift_id?: string | null
+        }
+        Update: {
+          activo?: boolean
+          archivo?: string
+          created_at?: string
+          filas?: number
+          fin?: string | null
+          grupo?: string | null
+          id?: string
+          inicio?: string | null
+          nombre_turno?: string
+          shift_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
