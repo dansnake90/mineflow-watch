@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AjustesRouteImport } from './routes/ajustes'
+import { Route as CargarRouteImport } from './routes/cargar'
 import { Route as PanelRouteImport } from './routes/panel'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const AjustesRoute = AjustesRouteImport.update({
   path: '/ajustes',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CargarRoute = CargarRouteImport.update({
+  id: '/cargar',
+  path: '/cargar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PanelRoute = PanelRouteImport.update({
   id: '/panel',
   path: '/panel',
@@ -32,30 +38,34 @@ const PanelRoute = PanelRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ajustes': typeof AjustesRoute
+  '/cargar': typeof CargarRoute
   '/panel': typeof PanelRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ajustes': typeof AjustesRoute
+  '/cargar': typeof CargarRoute
   '/panel': typeof PanelRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ajustes': typeof AjustesRoute
+  '/cargar': typeof CargarRoute
   '/panel': typeof PanelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ajustes' | '/panel'
+  fullPaths: '/' | '/ajustes' | '/cargar' | '/panel'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ajustes' | '/panel'
-  id: '__root__' | '/' | '/ajustes' | '/panel'
+  to: '/' | '/ajustes' | '/cargar' | '/panel'
+  id: '__root__' | '/' | '/ajustes' | '/cargar' | '/panel'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AjustesRoute: typeof AjustesRoute
+  CargarRoute: typeof CargarRoute
   PanelRoute: typeof PanelRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AjustesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cargar': {
+      id: '/cargar'
+      path: '/cargar'
+      fullPath: '/cargar'
+      preLoaderRoute: typeof CargarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/panel': {
       id: '/panel'
       path: '/panel'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AjustesRoute: AjustesRoute,
+  CargarRoute: CargarRoute,
   PanelRoute: PanelRoute,
 }
 export const routeTree = rootRouteImport
