@@ -75,6 +75,7 @@ function Cargar() {
 
   const borrar = useMutation({
     mutationFn: eliminarTurno,
+<<<<<<< HEAD
     onSuccess: () => {
       setMensaje("Turno eliminado correctamente.");
       setError(null);
@@ -84,6 +85,9 @@ function Cargar() {
       setMensaje(null);
       setError(e.message || "No se pudo eliminar el turno.");
     },
+=======
+    onSuccess: () => void queryClient.invalidateQueries(),
+>>>>>>> 6acbc1107e89143fd4ee32c800d1450d491dc070
   });
 
   const recibir = (archivo: File | undefined) => {
@@ -196,18 +200,27 @@ function Cargar() {
                     {fechaCorta(t.inicio)} → {fechaCorta(t.fin)}
                   </p>
                 </div>
+<<<<<<< HEAD
                 <div className="flex shrink-0 items-center gap-2">
                   {!t.activo && (
                     <button
                       disabled={activar.isPending}
                       onClick={() => activar.mutate(t.id)}
                       className="rounded-lg border border-border bg-surface px-3 py-2 text-sm font-semibold transition-colors hover:border-primary/60 hover:bg-accent disabled:opacity-50"
+=======
+                <div className="flex shrink-0 gap-2">
+                  {!t.activo && (
+                    <button
+                      onClick={() => activar.mutate(t.id)}
+                      className="rounded-lg border border-border bg-surface px-3 py-2 text-sm font-semibold transition-colors hover:border-primary/60 hover:bg-accent"
+>>>>>>> 6acbc1107e89143fd4ee32c800d1450d491dc070
                     >
                       Usar este turno
                     </button>
                   )}
                   {puedeCargar && (
                     <button
+<<<<<<< HEAD
                       title="Eliminar turno"
                       disabled={borrar.isPending}
                       onClick={() => {
@@ -222,6 +235,13 @@ function Cargar() {
                       ) : (
                         <Trash2 className="h-4 w-4" />
                       )}
+=======
+                      onClick={() => borrar.mutate(t.id)}
+                      aria-label={`Eliminar turno ${t.nombre_turno}`}
+                      className="grid h-10 w-10 place-items-center rounded-lg border border-border text-muted-foreground transition-colors hover:border-destructive/60 hover:text-destructive"
+                    >
+                      <Trash2 className="h-4 w-4" />
+>>>>>>> 6acbc1107e89143fd4ee32c800d1450d491dc070
                     </button>
                   )}
                 </div>
@@ -230,6 +250,37 @@ function Cargar() {
           </ul>
         )}
       </section>
+<<<<<<< HEAD
+=======
+
+      <section className="rounded-xl border border-border bg-card p-5">
+        <h2 className="text-lg font-semibold">Columnas que usa el sistema</h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Se leen de la hoja de ciclos de carguío; las demás columnas se ignoran.
+        </p>
+        <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            ["Truck", "Camión"],
+            ["Excav", "Pala asignada"],
+            ["Tons / TruckSize", "Toneladas y capacidad"],
+            ["QueueTime", "Espera en cola"],
+            ["SpotTime / LoadingTime", "Aculatamiento y carguío"],
+            ["ShovelIdleTime", "Ociosidad de la pala"],
+            ["EmptyTravelDuration", "Viaje vacío real y esperado"],
+            ["MaterialType / IsOre", "Material y mineral"],
+            ["LoadLocation", "Lugar de carga"],
+            ["ShiftStart / FullShiftName", "Turno y horario"],
+            ["TruckOperatorName", "Operador del camión"],
+            ["ExcavOperatorName", "Operador de la pala"],
+          ].map(([col, uso]) => (
+            <div key={col} className="rounded-lg bg-surface p-3">
+              <p className="font-mono text-xs text-primary">{col}</p>
+              <p className="mt-1 text-sm">{uso}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+>>>>>>> 6acbc1107e89143fd4ee32c800d1450d491dc070
     </div>
   );
 }
